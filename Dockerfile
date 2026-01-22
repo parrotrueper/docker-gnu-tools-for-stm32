@@ -23,15 +23,7 @@ RUN apt-get update && \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Set workdir
-WORKDIR /src
-# get the source code
-RUN git clone https://github.com/STMicroelectronics/gnu-tools-for-stm32.git && \
-    cd gnu-tools-for-stm32 && \
-    git checkout 14.3.rel1 && \
-# Build toolchain
-    ./build-toolchain.sh --build_type=native \
-    --skip_steps=manual,mingw,mingw32,mingw-gdb-with-python,mingw32-gdb-with-python,package_sources
+WORKDIR /workspace
 
 # Default command
 CMD ["/bin/bash"]
